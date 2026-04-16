@@ -11,7 +11,7 @@ if (isMobile) {
 
 
   // Enhanced Typewriter Effect with multiple texts 
-  const texts = ["Hi, I'm Rahul.", "Video Editor", "Content Creator"];
+  const texts = ["Hi, I'm Vinod Sharma (MV VASS).", "Video Editor", "Content Creator"];
   const typewriterElement = document.getElementById('typewriter-text');
   let textIndex = 0;
   let charIndex = 0;
