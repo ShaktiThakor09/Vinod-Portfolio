@@ -159,11 +159,7 @@ if (isMobile) {
             // Fallback prompt
             prompt("Copy this manually:", textToCopy);
           });
-      });
-    });
-  });
-  
-function toggleVideos() {
+        window.toggleVideos = function () {
   const more = document.getElementById("moreVideos");
   const btn = document.getElementById("viewBtn");
 
@@ -174,4 +170,8 @@ function toggleVideos() {
     more.style.display = "none";
     btn.innerText = "View More";
   }
-}
+};
+      });
+    });
+  });
+  
