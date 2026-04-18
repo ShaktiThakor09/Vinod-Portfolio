@@ -163,3 +163,15 @@ if (isMobile) {
     });
   });
   
+function toggleVideos() {
+  const more = document.getElementById("moreVideos");
+  const btn = document.getElementById("viewBtn");
+
+  if (more.style.display === "none") {
+    more.style.display = "block";
+    btn.innerText = "Show Less";
+  } else {
+    more.style.display = "none";
+    btn.innerText = "View More";
+  }
+}
