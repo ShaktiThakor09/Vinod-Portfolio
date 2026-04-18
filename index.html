@@ -70,26 +70,34 @@
   <h2>🎬 My Work</h2>
 
   <!-- 🎵 MUSIC VIDEOS -->
-  <h3 style="margin-top:40px;">🎵 Music Videos</h3>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
-    
+  <h3>🎵 Music Videos</h3>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+
+  <!-- 👇 FIRST 6 VIDEOS (visible) -->
     <iframe src="https://www.youtube.com/embed/9F86H6EHkGs" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/kmKf6RYd4EM" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/BfVo2E3ko8Q" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/VVEI4y-_acM" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/oDTFjU8JMZ8" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/qd6-T7AMdhY" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
+
+</div>
+
+<!-- 👇 HIDDEN VIDEOS -->
+<div id="moreVideos" style="display:none; margin-top:20px;">
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+
     <iframe src="https://www.youtube.com/embed/scD87UJ4i1Y" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/Ia-_UT74yWk" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/rcJ95X21Fu8" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/DuYLc6oaUp8" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/DuYLc6oaUp8" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/P--b4t02jCY" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/7CRWCjl9gKs" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
-   <iframe src="https://www.youtube.com/embed/oDTFjU8JMZ8" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
 
   <iframe src="https://www.youtube.com/embed/BEEhcrw3FuM" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
 
   <iframe src="https://www.youtube.com/embed/rB4NmxO7Mkw" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
-
-  <iframe src="https://www.youtube.com/embed/qd6-T7AMdhY" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
 
   <iframe src="https://www.youtube.com/embed/8F75HRLnZDQ" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
 
@@ -108,10 +116,18 @@
   <iframe src="https://www.youtube.com/embed/uQzHtilZpqA" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
 
   <iframe src="https://www.youtube.com/embed/RCNlH8zG6Z4" style="width:100%; height:200px; border-radius:10px;" allowfullscreen></iframe>
-
-
   </div>
+</div>
 
+<!-- 👇 BUTTON -->
+<div style="text-align:center; margin-top:20px;">
+  <button onclick="toggleVideos()" id="viewBtn"
+    style="padding:10px 20px; border:none; background:#ff4d5a; color:white; border-radius:8px; cursor:pointer;">
+    
+    View More
+  </button>
+</div>
+  
   <!-- 🎬 SERIAL / SHORT FILM -->
   <h3 style="margin-top:60px;">🎬 Serial / Short Film / Web Series</h3>
   <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
