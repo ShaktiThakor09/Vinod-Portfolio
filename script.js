@@ -1,172 +1,129 @@
 const video = document.querySelector(".Showreel");
-  
-// Check if user is on mobile
-const isMobile = window.innerWidth <= 480;
 
-if (isMobile) {
-  video.removeAttribute("loop"); // Remove loop on mobile
-} else {
-  video.setAttribute("loop", true); // Make sure it's looping on desktop
+// Safe check
+if (video) {
+  const isMobile = window.innerWidth <= 480;
+
+  if (isMobile) {
+    video.removeAttribute("loop");
+  } else {
+    video.setAttribute("loop", true);
+  }
 }
 
+// TYPEWRITER EFFECT
+const texts = ["Vinod Sharma (MV VASS)", "Video Editor", "Content Creator"];
+const typewriterElement = document.getElementById("typewriter-text");
 
-  // Enhanced Typewriter Effect with multiple texts 
-  const texts = ["Hi, I'm Vinod Sharma (MV VASS).", "Video Editor", "Content Creator"];
-  const typewriterElement = document.getElementById('typewriter-text');
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  const typingSpeed = 150;
-  const deletingSpeed = 100;
-  const pauseBetweenTexts = 2000;
-  
-  function typeWriter() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-      // Deleting characters
-      typewriterElement.innerHTML = currentText.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      // Typing characters
-      typewriterElement.innerHTML = currentText.substring(0, charIndex + 1);
-      charIndex++;
-    }
-    
-    if (!isDeleting && charIndex === currentText.length) {
-      // Pause at end of text
-      isDeleting = true;
-      setTimeout(typeWriter, pauseBetweenTexts);
-    } else if (isDeleting && charIndex === 0) {
-      // Move to next text
-      isDeleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-      setTimeout(typeWriter, typingSpeed);
-    } else {
-      // Continue typing/deleting
-      setTimeout(typeWriter, isDeleting ? deletingSpeed : typingSpeed);
-    }
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeWriter() {
+  if (!typewriterElement) return;
+
+  const currentText = texts[textIndex];
+
+  if (isDeleting) {
+    typewriterElement.innerHTML = currentText.substring(0, charIndex--);
+  } else {
+    typewriterElement.innerHTML = currentText.substring(0, charIndex++);
   }
-  
-  // Start the typewriter effect when page loads
-  window.addEventListener('DOMContentLoaded', (event) => {
+
+  if (!isDeleting && charIndex === currentText.length) {
+    isDeleting = true;
+    setTimeout(typeWriter, 1000);
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % texts.length;
+    setTimeout(typeWriter, 200);
+  } else {
+    setTimeout(typeWriter, isDeleting ? 50 : 100);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (typewriterElement) {
     typewriterElement.style.borderRight = "3px solid #00e0ff";
-    setTimeout(typeWriter, 1000); // 1 second delay before starting
-  });
-
-
-  function handleEmailClick(e) {
-    e.preventDefault();
-    
-    const email = "uniquesedit0@gmail.com";
-    const subject = "Video Editing Inquiry";
-    const body = `Hello Rahul,
-  
-  I would like to discuss a video editing project.
-  
-  Project Details:
-  - Type of video:
-  - Duration:
-  - Deadline:
-  
-  Budget:
-  
-  Looking forward to your response!`;
-  
-    // Try to open email client directly
-    try {
-      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Create temporary link element
-      const tempLink = document.createElement('a');
-      tempLink.href = mailtoUrl;
-      tempLink.style.display = 'none';
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      document.body.removeChild(tempLink);
-      
-      // Set timeout to check if email client opened
-      setTimeout(() => {
-        if (!document.hidden) {
-          showEmailFallback(email);
-        }
-      }, 1000);
-    } catch (error) {
-      showEmailFallback(email);
-    }
+    setTimeout(typeWriter, 1000);
   }
-  
-  function showEmailFallback(email) {
-    const shouldCopy = confirm("Couldn't open email client. Copy email address to clipboard?");
-    if (shouldCopy) {
-      navigator.clipboard.writeText(email)
-        .then(() => alert(`Email copied: ${email}`))
-        .catch(() => {
-          prompt("Please copy this email address:", email);
-        });
-    }
-  }
+});
 
-  document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} itz rahul.`;
+// EMAIL FUNCTION
+function handleEmailClick(e) {
+  e.preventDefault();
 
-  const allVideos = document.querySelectorAll('video');
-  const showreelVideo = document.querySelector('.Showreel');
-  
-  allVideos.forEach(video => {
-    video.muted = true; // required for autoplay on hover
-    
-    // Play on hover for all videos
-    video.addEventListener('mouseenter', () => {
-      video.play();
-      
-      // Pause the showreel if this isn't the showreel itself
-      if (video !== showreelVideo) {
-        showreelVideo.pause();
-      }
-    });
-    
-    // Reset on mouse leave
-    video.addEventListener('mouseleave', () => {
-      video.pause();
-      video.currentTime = 0;
-      
-      // Resume the showreel if this isn't the showreel itself
-      if (video !== showreelVideo) {
-        showreelVideo.play();
-      }
+  const email = "uniquesedit0@gmail.com";
+  const subject = "Video Editing Inquiry";
+
+  const body = `Hello,
+
+I would like to discuss a video editing project.
+
+Project Details:
+- Type of video:
+- Duration:
+- Deadline:
+
+Budget:
+
+Looking forward to your response!`;
+
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoUrl;
+}
+
+// FOOTER YEAR FIX
+document.querySelector("footer p").innerHTML =
+  `&copy; ${new Date().getFullYear()} Vinod Sharma (MV VASS).`;
+
+// VIDEO HOVER EFFECT
+const allVideos = document.querySelectorAll("video");
+const showreelVideo = document.querySelector(".Showreel");
+
+allVideos.forEach(v => {
+  v.muted = true;
+
+  v.addEventListener("mouseenter", () => {
+    v.play();
+    if (showreelVideo && v !== showreelVideo) showreelVideo.pause();
+  });
+
+  v.addEventListener("mouseleave", () => {
+    v.pause();
+    v.currentTime = 0;
+    if (showreelVideo && v !== showreelVideo) showreelVideo.play();
+  });
+});
+
+if (showreelVideo) showreelVideo.play();
+
+// COPY EMAIL CLICK
+document.addEventListener("DOMContentLoaded", () => {
+  const copyTags = document.querySelectorAll(".copy-text");
+
+  copyTags.forEach(tag => {
+    tag.style.cursor = "pointer";
+    tag.title = "Click to copy";
+
+    tag.addEventListener("click", () => {
+      const textToCopy = tag.textContent.trim();
+
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => alert(`Copied: ${textToCopy}`))
+        .catch(() => prompt("Copy this manually:", textToCopy));
     });
   });
-  
-  // Make sure showreel is playing initially
-  showreelVideo.play();
+});
 
-  // email address copy to clipboard function 
-  document.addEventListener("DOMContentLoaded", () => {
-    const copyTags = document.querySelectorAll(".copy-text");
-  
-    copyTags.forEach(tag => {
-      tag.style.cursor = "pointer"; // Optional: change cursor on hover
-      tag.title = "Click to copy";
-  
-      tag.addEventListener("click", () => {
-        const textToCopy = tag.textContent.trim();
-  
-        navigator.clipboard.writeText(textToCopy)
-          .then(() => {
-            alert(`Copied: ${textToCopy}`);
-          })
-          .catch(() => {
-            // Fallback prompt
-            prompt("Copy this manually:", textToCopy);
-          });
-      });
-    });
-  });
-  window.toggleVideos = function () {
+// ✅ VIEW MORE BUTTON FIXED
+window.toggleVideos = function () {
   const more = document.getElementById("moreVideos");
   const btn = document.getElementById("viewBtn");
 
-  if (more.style.display === "none") {
+  if (!more || !btn) return;
+
+  if (more.style.display === "none" || more.style.display === "") {
     more.style.display = "block";
     btn.innerText = "Show Less";
   } else {
