@@ -687,24 +687,54 @@
     margin-bottom:30px;
 }
 
+/* Logo Grid */
 .logo-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    display:flex;
+    flex-wrap:wrap;
     gap:25px;
+    justify-content:flex-start;
 }
 
+/* Logo Card */
 .logo-card{
+    width:220px;
+    height:180px;
     background:#111827;
     border-radius:15px;
     overflow:hidden;
-    transition:0.3s;
+    border:2px solid rgba(255,255,255,0.15);
+    transition:all 0.3s ease;
 }
 
 .logo-card:hover{
     transform:translateY(-8px);
+    border-color:#00d9ff;
+    box-shadow:0 8px 25px rgba(0,217,255,0.25);
 }
 
+/* Logo Image */
 .logo-card img{
     width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#ffffff;
+    padding:12px;
     display:block;
+}
+
+/* Mobile Responsive */
+@media(max-width:768px){
+
+    .logo-section h2{
+        font-size:32px;
+    }
+
+    .logo-grid{
+        justify-content:center;
+    }
+
+    .logo-card{
+        width:170px;
+        height:140px;
+    }
 }
